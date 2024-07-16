@@ -24,11 +24,6 @@ export class TSFileMigrationProvider implements MigrationProvider {
 		const files = await safeReaddir(this.#props.migrationFolder)
 
 		for (const fileName of files) {
-			if (!isTSFile(fileName)) {
-				consola.warn(`Ignoring \`${fileName}\` - not a TS file.`)
-				continue
-			}
-
 			const filePath = join(this.#props.migrationFolder, fileName)
 
 			const migration = await importTSFile(filePath)
